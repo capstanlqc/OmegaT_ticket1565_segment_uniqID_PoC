@@ -3,8 +3,6 @@
 import hashlib
 from tabulate import tabulate
 import inquirer
-import os
-import sys
 from pprint import pprint
 import json
 
