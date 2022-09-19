@@ -3,13 +3,12 @@
 import hashlib
 from tabulate import tabulate
 import inquirer
-import os
-import sys
 from pprint import pprint
 import json
 
+
 # function
-def set_segment_identifier(approach, consider_file = True):
+def set_segment_identifier(approach, consider_file=True):
     """ Sets the segment context identifier based on the approach chosen. """
     hash_table = []
     count = {}
@@ -30,20 +29,25 @@ def set_segment_identifier(approach, consider_file = True):
                     count[filename][segment] = 0
                 count[filename][segment] += 1
                 if consider_file:
-                    context = filename + segment + str(count[filename][segment])
+                    context = filename + segment + str(
+                        count[filename][segment])
                 else:
                     context = segment + str(count[filename][segment])
-            else: # prev/next (current default)
-                prev = segments[i-1] if i > 0 else "START"
-                next = segments[i+1] if i < len(segments)-1 else "END"
+            else:  # prev/next (current default)
+                prev = segments[i - 1] if i > 0 else "START"
+                next = segments[i + 1] if i < len(segments) - 1 else "END"
                 if consider_file:
                     context = filename + prev + next
                 else:
                     context = prev + next
 
             hash = hashlib.md5(context.encode()).hexdigest()
-            hash_table.append([str(absolute_segment_number).zfill(2), filename, str(i).zfill(2), hash, segment])
+            hash_table.append([
+                str(absolute_segment_number).zfill(2), filename,
+                str(i).zfill(2), hash, segment
+            ])
     return hash_table
+
 
 # logic
 
@@ -58,21 +62,23 @@ print()
 questions = [
     inquirer.List(
         "approach",
-        message="What approach do you want to use to set context identifiers for every segment in the project?",
+        message=
+        "What approach do you want to use to set context identifiers for every segment in the project?",
         choices=[
-            "prev/next",
-            "relative-segment-number",
-            "repetition-count-per-file"
-            ]
-    ),
-    inquirer.Confirm("consider_file", message="Would you like to consider the filepath as part of the context?", default=True)
+            "prev/next", "relative-segment-number", "repetition-count-per-file"
+        ]),
+    inquirer.Confirm(
+        "consider_file",
+        message=
+        "Would you like to consider the filepath as part of the context?",
+        default=True)
 ]
 answers = inquirer.prompt(questions)
 
 approach = answers["approach"]
 consider_file = answers["consider_file"]
 
-hash_table = set_segment_identifier(approach, consider_file)
+hash_table = set_segment_identifier(approach, consider_file=True)
 
 print()
 print(tabulate(hash_table, headers=['Abs#', 'File', 'Rel#', 'ID', 'Segment']))
@@ -81,10 +87,14 @@ segment = "Petitions to the European Parliament"
 repeated_seg_ids = [row[3] for row in hash_table if segment in row]
 
 print()
-print(f"There are {len(repeated_seg_ids)} instances of segment '{segment}' in the project, with identifiers:\n")
+print(
+    f"There are {len(repeated_seg_ids)} instances of segment '{segment}' in the project, with identifiers:\n"
+)
 for id in repeated_seg_ids:
     print(f" * {id}")
 
 print()
 print("Alternative translations can be bound to the identifiers above.")
-print("As many alternative translations are possible for this segment as unique identifiers the list above contains.")
+print(
+    "As many alternative translations are possible for this segment as unique identifiers the list above contains."
+)
