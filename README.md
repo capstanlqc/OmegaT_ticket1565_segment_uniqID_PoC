@@ -1,20 +1,24 @@
 # OmegaT ticket 1565: segment unique IDs -- PoC
 
-I have created a little mockup in Python to show the results of three different approaches to produce segment IDs in OmegaT. This meant as a proof of concept of potential solutions for [issue 1565](https://sourceforge.net/p/omegat/feature-requests/1565/).
+I have created a little mockup in Python to show the results of three different approaches to produce segment IDs in OmegaT. This is meant as a proof of concept of potential solutions for [issue 1565](https://sourceforge.net/p/omegat/feature-requests/1565/).
 
-I am assuming that whatever runs in Python with this data can also run in Java in OmegaT.
+I am assuming that this code can be ported to OmegaT and run in Java instead of Python. I am also assuming that this logic to obtain hashes for all segments can be run between the segmentation step and the point when alternative translations are considered and bound to the segments the segments they match.
 
-The data emulates an OmegaT project with three files and a few repetitions. You can select one of the three approaches and whether you want to consider the file path as part of the context.
+The data in JSON emulates an OmegaT project with three files and a few repetitions. You can select one of the three approaches and whether you want to consider the file path as part of the context.
 
 # Options
 
 The three approaches are:
 
 + prev/next: This considers the previous and the next segments as the context. This is the current logic in OmegaT and the proposed default.
-+ relative-segment-number: This is the solution proposed in this ticket.
++ relative-segment-number: This is the main solution proposed in the ticket.
 + repetition-count-per-file: This is yet another solution that addresses Hiroshi's concerns about the 'relative-segment-number' approach
 
-My proposal is to implement the second and third approaches in OmegaT and leave the first approach as the default. That allows the user to choose how they want to set up the project according to their needs and circumstances (e.g. depending on whether their source files will change or not), but also nothing changes for users that don't go into this configuration and stay with the default (current) behaviour.
+My proposal is to implement the second and third approaches in OmegaT and leave the first approach as the default behaviour. That allows the user to choose how they want to set up their project according to their needs and circumstances (e.g. depending on whether their source files will change or not), but also nothing changes for users that don't go into this configuration and stay with the default (current) behaviour.
+
+If you run the mockup, you can see how selecting one approach or the other, and considering the file as part of the context, affects the expected results, which are being able to obtain a unique ID that allows to use alternative translation when the previous and next segments are identical in different repetitions.
+
+The repeated segment **"Petitions to the European Parliament"** appears four times in the data, to account for different possibilities. Each approach produces a hash for each of the four occurrences.
 
 # Comments
 
