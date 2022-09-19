@@ -34,6 +34,6 @@ If you have an account in replit you can see the code and data as well as run it
 
 Otherwise you can just run it here: https://replit.com/@msoutopico/OmegaTticket1565segmentuniqIDPoC?v=1
 
-If you prefer, you can clone the data and code from https://github.com/capstanlqc/OmegaT_ticket1565_segment_uniqID_PoC
+If you prefer, you can clone the repository from https://github.com/capstanlqc/OmegaT_ticket1565_segment_uniqID_PoC and run it locally.
 
 I am also attaching a sample OmegaT project package with the same data.
