@@ -72,7 +72,7 @@ answers = inquirer.prompt(questions)
 approach = answers["approach"]
 consider_file = answers["consider_file"]
 
-hash_table = set_segment_identifier(approach, consider_file = True)
+hash_table = set_segment_identifier(approach, consider_file)
 
 print()
 print(tabulate(hash_table, headers=['Abs#', 'File', 'Rel#', 'ID', 'Segment']))
