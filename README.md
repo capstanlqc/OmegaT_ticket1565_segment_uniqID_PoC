@@ -1,6 +1,6 @@
 # OmegaT ticket 1565: segment unique IDs -- PoC
 
-I have created a little mockup in Python to show the results of three different approaches to produce segment IDs in OmegaT.
+I have created a little mockup in Python to show the results of three different approaches to produce segment IDs in OmegaT. This meant as a proof of concept of potential solutions for [issue 1565](https://sourceforge.net/p/omegat/feature-requests/1565/).
 
 I am assuming that whatever runs in Python with this data can also run in Java in OmegaT.
 
