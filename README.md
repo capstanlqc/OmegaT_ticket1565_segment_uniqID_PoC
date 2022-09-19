@@ -1,4 +1,4 @@
-# OmegaT ticket 1565 (segment unique IDs) -- a proof of concept
+# OmegaT ticket 1565: segment unique IDs -- PoC
 
 I have created a little mockup in Python to show the results of three different approaches to produce segment IDs in OmegaT.
 
