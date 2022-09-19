@@ -18,7 +18,7 @@ My proposal is to implement the second and third approaches in OmegaT and leave 
 
 If you run the mockup, you can see how selecting one approach or the other, and considering the file as part of the context, affects the expected results, which are being able to obtain a unique ID that allows to use alternative translation when the previous and next segments are identical in different repetitions.
 
-The repeated segment **"Petitions to the European Parliament"** appears four times in the data, to account for different possibilities. Each approach produces a hash for each of the four occurrences.
+The repeated segment **"Petitions to the European Parliament"** (in segments 3, 8, 12 and 15) appears four times in the data, to account for different possibilities. Each approach produces a hash for each of the four occurrences.
 
 # Comments
 
