@@ -20,22 +20,24 @@ def set_segment_identifier(approach, consider_file = True):
         for i, segment in enumerate(segments):
             absolute_segment_number += 1
 
+            # get prev/next context
+            prev = segments[i-1] if i > 0 else "START"
+            next = segments[i+1] if i < len(segments)-1 else "END"
+
             if approach == "relative-segment-number":
                 if consider_file:
-                    context = filename + str(i)
+                    context = filename + prev + next + str(i)
                 else:
-                    context = str(absolute_segment_number)
+                    context = prev + next + str(absolute_segment_number)
             elif approach == "repetition-count-per-file":
                 if not segment in count[filename]:
                     count[filename][segment] = 0
                 count[filename][segment] += 1
                 if consider_file:
-                    context = filename + segment + str(count[filename][segment])
+                    context = filename + prev + next + segment + str(count[filename][segment])
                 else:
-                    context = segment + str(count[filename][segment])
+                    context = prev + next + segment + str(count[filename][segment])
             else: # prev/next (current default)
-                prev = segments[i-1] if i > 0 else "START"
-                next = segments[i+1] if i < len(segments)-1 else "END"
                 if consider_file:
                     context = filename + prev + next
                 else:
