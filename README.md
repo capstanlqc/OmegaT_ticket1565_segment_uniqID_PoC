@@ -10,15 +10,36 @@ The data in JSON (`project.json`) emulates an OmegaT project with three files an
 
 The three approaches are:
 
-+ prev/next: This considers the previous and the next segments as the context. This is the current logic in OmegaT and the proposed default.
-+ relative-segment-number: This is the main solution proposed in the ticket.
-+ repetition-count-per-file: This is yet another solution that addresses Hiroshi's concerns about the 'relative-segment-number' approach
++ `prev/next`: This considers the previous and the next segments as the context. This is the current logic in OmegaT and the proposed default.
++ `relative-segment-number`: This is the main solution proposed in the ticket.
++ `repetition-count-per-file`: This is yet another solution that addresses Hiroshi's concerns about the 'relative-segment-number' approach
 
 We propose to implement the second and third approaches in OmegaT and leave the first approach as the default behaviour. That allows the user to choose how they want to set up their project according to their needs and circumstances (e.g. depending on whether their source files will change or not), but also nothing changes for users that don't go into this configuration and stay with the default (current) behaviour.
 
 If you run this demo, you can see how results vary depending on the approach selected on whether the file is considered part of the context or not. The expected results are a unique ID for each repetition that allows to create a unique alternative translation, which is uniquely bound to one segment even when the previous and next segments are identical in different repetitions.
 
-The repeated segment **"Petitions to the European Parliament"** (in segments 3, 8, 12 and 15) appears four times in the data, to account for different possibilities. Each approach produces a hash for each of the four occurrences.
+The repeated segment **"Petitions to the European Parliament"** (in segments 3, 8, 12 and 15) appears four times in the data, to account for different possibilities. Each approach produces a hash for each of the four occurrences. Notice how the context including previous and next text is the same in instances 3 and 8.
+
+| file         | in-proj #   | in-file # | text                                                 | repeated |
+|--------------|-------------|-----------|------------------------------------------------------|----------|
+| file_A.txt   | 1           | 1         | Which of the following have you heard of?            |          |
+| file_A.txt   | 2           | 2         | Events or online activities organised by together.eu |          |
+| file_A.txt   | 3           | 3         | Petitions to the European Parliament                 | *        |
+| file_A.txt   | 4           | 4         | Contacting an MEP about an issue                     |          |
+| file_A.txt   | 5           | 5         | foo                                                  |          |
+| file_A.txt   | 6           | 6         | And which of these have you actively taken part in?  |          |
+| file_A.txt   | 7           | 7         | Events or online activities organised by together.eu |          |
+| file_A.txt   | 8           | 8         | Petitions to the European Parliament                 | *        |
+| file_A.txt   | 9           | 9         | Contacting an MEP about an issue                     |          |
+| file_A.txt   | 10          | 10        | bar                                                  |          |
+|--------------|-------------|-----------|------------------------------------------------------|----------|
+| file_B.txt   | 11          | 1         | baz                                                  |          |
+| file_B.txt   | 12          | 2         | Petitions to the European Parliament                 | *        |
+| file_B.txt   | 13          | 3         | qux                                                  |          |
+|--------------|-------------|-----------|------------------------------------------------------|----------|
+| file_C.txt   | 14          | 1         | Events or online activities organised by together.eu |          |
+| file_C.txt   | 15          | 2         | Petitions to the European Parliament                 | *        |
+| file_C.txt   | 16          | 3         | Contacting an MEP about an issue                     |          |
 
 # Comments
 
