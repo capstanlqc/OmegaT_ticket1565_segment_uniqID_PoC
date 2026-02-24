@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from rich import print
 import hashlib
 from tabulate import tabulate
 import inquirer
@@ -88,3 +89,7 @@ for id in repeated_seg_ids:
 print()
 print("Alternative translations can be bound to the identifiers above.")
 print("As many alternative translations are possible for this segment as unique identifiers the list above contains.")
+
+if len(repeated_seg_ids) != len(set(repeated_seg_ids)):
+    print(f"‼️ DANGER ‼️ You can only create {len(set(repeated_seg_ids))} alternative translations for those {len(repeated_seg_ids)} repetitions.")
+
