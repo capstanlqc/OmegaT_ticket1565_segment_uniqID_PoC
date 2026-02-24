@@ -32,11 +32,9 @@ The repeated segment **"Petitions to the European Parliament"** (in segments 3, 
 | file_A.txt   | 8           | 8         | Petitions to the European Parliament                 | *        |
 | file_A.txt   | 9           | 9         | Contacting an MEP about an issue                     |          |
 | file_A.txt   | 10          | 10        | bar                                                  |          |
-|--------------|-------------|-----------|------------------------------------------------------|----------|
 | file_B.txt   | 11          | 1         | baz                                                  |          |
 | file_B.txt   | 12          | 2         | Petitions to the European Parliament                 | *        |
 | file_B.txt   | 13          | 3         | qux                                                  |          |
-|--------------|-------------|-----------|------------------------------------------------------|----------|
 | file_C.txt   | 14          | 1         | Events or online activities organised by together.eu |          |
 | file_C.txt   | 15          | 2         | Petitions to the European Parliament                 | *        |
 | file_C.txt   | 16          | 3         | Contacting an MEP about an issue                     |          |
